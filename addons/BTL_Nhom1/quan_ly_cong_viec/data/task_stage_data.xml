@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="btl_task_stage_new" model="btl.task.stage">
+        <field name="name">Moi</field>
+        <field name="code">moi</field>
+        <field name="sequence">1</field>
+        <field name="is_done">0</field>
+        <field name="fold">0</field>
+    </record>
+
+    <record id="btl_task_stage_in_progress" model="btl.task.stage">
+        <field name="name">Dang thuc hien</field>
+        <field name="code">dang_thuc_hien</field>
+        <field name="sequence">2</field>
+        <field name="is_done">0</field>
+        <field name="fold">0</field>
+    </record>
+
+    <record id="btl_task_stage_waiting" model="btl.task.stage">
+        <field name="name">Cho phan hoi</field>
+        <field name="code">cho_phan_hoi</field>
+        <field name="sequence">3</field>
+        <field name="is_done">0</field>
+        <field name="fold">0</field>
+    </record>
+
+    <record id="btl_task_stage_done" model="btl.task.stage">
+        <field name="name">Hoan thanh</field>
+        <field name="code">hoan_thanh</field>
+        <field name="sequence">4</field>
+        <field name="is_done">1</field>
+        <field name="fold">1</field>
+    </record>
+
+    <record id="btl_task_stage_cancel" model="btl.task.stage">
+        <field name="name">Huy</field>
+        <field name="code">huy</field>
+        <field name="sequence">5</field>
+        <field name="is_done">0</field>
+        <field name="fold">1</field>
+    </record>
+</odoo>
