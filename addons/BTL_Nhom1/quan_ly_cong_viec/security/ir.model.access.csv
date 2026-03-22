@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_btl_task_user,access.btl.task.user,model_btl_task,base.group_user,1,1,1,1
+access_btl_task_stage_user,access.btl.task.stage.user,model_btl_task_stage,base.group_user,1,1,1,1
+access_btl_task_dashboard_user,access.btl.task.dashboard.user,model_btl_task_dashboard,base.group_user,1,1,1,0
+access_btl_task_reminder_user,access.btl.task.reminder.user,model_btl_task_reminder,base.group_user,1,1,1,1

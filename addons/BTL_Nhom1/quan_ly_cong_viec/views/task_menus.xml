@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_btl_task_root" name="Quan ly cong viec" sequence="20"/>
+
+    <menuitem id="menu_btl_task_dashboard" name="Dashboard" parent="menu_btl_task_root" action="action_btl_task_dashboard" sequence="1"/>
+    <menuitem id="menu_btl_task_list" name="Danh sach cong viec" parent="menu_btl_task_root" action="action_btl_task" sequence="2"/>
+    <menuitem id="menu_btl_task_progress" name="Tien trinh cong viec" parent="menu_btl_task_root" action="action_btl_task_progress" sequence="3"/>
+    <menuitem id="menu_btl_task_mine" name="Viec cua toi" parent="menu_btl_task_root" action="action_btl_task_mine" sequence="4"/>
+    <menuitem id="menu_btl_task_overdue" name="Cong viec qua han" parent="menu_btl_task_root" action="action_btl_task_overdue" sequence="5"/>
+    <menuitem id="menu_btl_task_reminder" name="Nhat ky nhac viec" parent="menu_btl_task_root" action="action_btl_task_reminder" sequence="6"/>
+
+    <menuitem id="menu_btl_task_config_root" name="Cau hinh" parent="menu_btl_task_root" sequence="90"/>
+    <menuitem id="menu_btl_task_stage" name="Tien trinh" parent="menu_btl_task_config_root" action="action_btl_task_stage" sequence="1"/>
+</odoo>
