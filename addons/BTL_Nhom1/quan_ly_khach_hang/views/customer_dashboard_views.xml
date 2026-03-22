@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_customer_dashboard_form" model="ir.ui.view">
+        <field name="name">btl.customer.dashboard.form</field>
+        <field name="model">btl.customer.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard khach hang" create="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Dashboard Quan Ly Khach Hang</h1>
+                    </div>
+                    <group col="4">
+                        <button name="action_open_all_customers" string="Tong khach hang" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="total_customer" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_gold_customers" string="Khach VIP" type="object" class="oe_stat_button" icon="fa-star">
+                            <field name="gold_customer" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_my_customers" string="Khach cua toi" type="object" class="oe_stat_button" icon="fa-user">
+                            <field name="my_customer" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_need_care" string="Can cham soc hom nay" type="object" class="oe_stat_button" icon="fa-phone">
+                            <field name="need_care_today" widget="statinfo"/>
+                        </button>
+                    </group>
+                    <!-- <group>
+                        <group string="Goi y van hanh">
+                            <div class="o_form_label">1. Tao khach hang moi va gan nhan vien phu trach tu hr.employee.</div>
+                            <div class="o_form_label">2. Bo sung nguoi lien he cho tung khach hang doanh nghiep.</div>
+                            <div class="o_form_label">3. Gan ngay cham soc tiep theo de dashboard theo doi.</div>
+                        </group>
+                    </group> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btl_customer_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">btl.customer.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="btl_customer_dashboard_main"/>
+        <field name="view_id" ref="view_btl_customer_dashboard_form"/>
+        <field name="target">current</field>
+    </record>
+</odoo>
