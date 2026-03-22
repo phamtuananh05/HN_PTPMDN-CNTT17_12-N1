@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_btl_hr_family_user,access.btl.hr.family.user,model_btl_hr_family,base.group_user,1,1,1,1
+access_btl_hr_work_history_user,access.btl.hr.work.history.user,model_btl_hr_work_history,base.group_user,1,1,1,1
+access_btl_hr_dashboard_user,access.btl.hr.dashboard.user,model_btl_hr_dashboard,base.group_user,1,1,1,0

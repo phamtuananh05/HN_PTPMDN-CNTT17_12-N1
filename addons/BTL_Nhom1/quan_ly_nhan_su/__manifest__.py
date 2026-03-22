@@ -1,0 +1,21 @@
+{
+    'name': 'Quan ly nhan su',
+    'version': '15.0.1.0.0',
+    'summary': 'Mo rong hr.employee cho bai tap lon',
+    'description': 'Quan ly nhan su, than nhan, qua trinh cong tac va dashboard.',
+    'category': 'Human Resources',
+    'author': 'BTL Nhom 1',
+    'license': 'LGPL-3',
+    'depends': ['hr'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/hr_dashboard_data.xml',
+        'views/hr_employee_views.xml',
+        'views/employee_family_views.xml',
+        'views/employee_work_history_views.xml',
+        'views/hr_dashboard_views.xml',
+        'views/hr_menus.xml',
+    ],
+    'application': True,
+    'installable': True,
+}

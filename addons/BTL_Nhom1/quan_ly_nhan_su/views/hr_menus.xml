@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_btl_hr_root" name="Quan ly nhan su" sequence="5"/>
+
+    <menuitem id="menu_btl_hr_dashboard" name="Dashboard" parent="menu_btl_hr_root" action="action_btl_hr_dashboard" sequence="1"/>
+    <menuitem id="menu_btl_hr_employee" name="Danh sach nhan vien" parent="menu_btl_hr_root" action="action_btl_hr_employee" sequence="2"/>
+    <menuitem id="menu_btl_hr_employee_mine" name="Ho so cua toi" parent="menu_btl_hr_root" action="action_btl_hr_employee_mine" sequence="3"/>
+    <menuitem id="menu_btl_hr_department" name="Phong ban" parent="menu_btl_hr_root" action="action_btl_hr_department" sequence="4"/>
+    <menuitem id="menu_btl_hr_family" name="Than nhan" parent="menu_btl_hr_root" action="action_btl_hr_family" sequence="5"/>
+    <menuitem id="menu_btl_hr_work_history" name="Qua trinh cong tac" parent="menu_btl_hr_root" action="action_btl_hr_work_history" sequence="6"/>
+</odoo>
