@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="btl_task_dashboard_main" model="btl.task.dashboard">
+        <field name="name">Dashboard Cong Viec</field>
+    </record>
+</odoo>

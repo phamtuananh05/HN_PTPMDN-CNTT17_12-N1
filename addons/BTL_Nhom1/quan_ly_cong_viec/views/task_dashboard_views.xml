@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_task_dashboard_form" model="ir.ui.view">
+        <field name="name">btl.task.dashboard.form</field>
+        <field name="model">btl.task.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard công việc" create="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Dashboard Quản lý công việc</h1>
+                        <div class="text-muted">
+                            Theo dõi nhanh tiến độ xử lý, công việc quá hạn và hiệu suất làm việc trong ngày.
+                        </div>
+                    </div>
+
+                    <group string="Chỉ số tổng quan" col="5">
+                        <button name="action_open_all_tasks"
+                                string="Tổng công việc"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tasks">
+                            <field name="total_task" widget="statinfo"/>
+                        </button>
+
+                        <button name="action_open_my_tasks"
+                                string="Việc của tôi"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-user">
+                            <field name="my_task" widget="statinfo"/>
+                        </button>
+
+                        <button name="action_open_overdue_tasks"
+                                string="Quá hạn"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-warning">
+                            <field name="overdue_task" widget="statinfo"/>
+                        </button>
+
+                        <button name="action_open_done_today"
+                                string="Hoàn thành hôm nay"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-check">
+                            <field name="done_today" widget="statinfo"/>
+                        </button>
+
+                        <button name="action_open_vip_tasks"
+                                string="Khách VIP"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-star">
+                            <field name="vip_task" widget="statinfo"/>
+                        </button>
+                    </group>
+
+                    <!-- <group string="Mô tả nhanh" col="2">
+                        <group>
+                            <div class="o_form_label">
+                                • Tổng công việc: theo dõi toàn bộ đầu việc đang phát sinh trong hệ thống.
+                            </div>
+                            <div class="o_form_label">
+                                • Việc của tôi: hiển thị các công việc do nhân viên hiện tại phụ trách.
+                            </div>
+                            <div class="o_form_label">
+                                • Quá hạn: hỗ trợ quản lý các công việc cần ưu tiên xử lý ngay.
+                            </div>
+                        </group>
+                        <group>
+                            <div class="o_form_label">
+                                • Hoàn thành hôm nay: theo dõi kết quả xử lý công việc trong ngày.
+                            </div>
+                            <div class="o_form_label">
+                                • Khách VIP: tập trung các công việc liên quan đến khách hàng quan trọng.
+                            </div>
+                            <div class="o_form_label">
+                                • Có thể bấm trực tiếp vào từng chỉ số để mở danh sách tương ứng.
+                            </div>
+                        </group>
+                    </group> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btl_task_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">btl.task.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="btl_task_dashboard_main"/>
+        <field name="view_id" ref="view_btl_task_dashboard_form"/>
+        <field name="target">current</field>
+    </record>
+</odoo>
