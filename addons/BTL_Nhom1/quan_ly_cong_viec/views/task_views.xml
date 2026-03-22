@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_task_tree" model="ir.ui.view">
+        <field name="name">btl.task.tree</field>
+        <field name="model">btl.task</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="is_overdue" decoration-success="is_done">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="task_type"/>
+                <field name="customer_id"/>
+                <field name="employee_id"/>
+                <field name="stage_id"/>
+                <field name="priority"/>
+                <field name="planned_date"/>
+                <field name="deadline_date"/>
+                <field name="is_done" invisible="1"/>
+                <field name="is_overdue"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_task_form" model="ir.ui.view">
+        <field name="name">btl.task.form</field>
+        <field name="model">btl.task</field>
+        <field name="arch" type="xml">
+            <form string="Công việc">
+                <header>
+                    <button name="action_move_to_in_progress"
+                            type="object"
+                            string="Bắt đầu xử lý"
+                            class="oe_highlight"/>
+                    <button name="action_move_to_done"
+                            type="object"
+                            string="Hoàn thành"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nhập tên công việc..."/>
+                        </h1>
+                        <div class="text-muted">
+                            Mã công việc: <field name="code" readonly="1" nolabel="1" class="oe_inline"/>
+                        </div>
+                    </div>
+
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_followups" type="object" class="oe_stat_button" icon="fa-share">
+                            <field name="child_task_count" string="Follow-up" widget="statinfo"/>
+                        </button>
+                        <button name="action_open_reminders" type="object" class="oe_stat_button" icon="fa-bell">
+                            <field name="reminder_count" string="Nhắc việc" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <group string="Thông tin chính">
+                        <group>
+                            <field name="task_type"/>
+                            <field name="stage_id"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="contact_person_id"/>
+                            <field name="employee_id"/>
+                            <field name="department_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group string="Theo dõi xử lý">
+                        <group>
+                            <field name="planned_date"/>
+                            <field name="deadline_date"/>
+                            <field name="completed_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="customer_rank" readonly="1"/>
+                            <field name="is_overdue" readonly="1"/>
+                            <field name="followup_created" readonly="1"/>
+                            <field name="parent_task_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Mô tả">
+                            <field name="description" placeholder="Nhập mô tả công việc hoặc nội dung chăm sóc khách hàng..."/>
+                        </page>
+
+                        <page string="Danh sách Follow-up">
+                            <field name="child_task_ids" readonly="1">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="task_type"/>
+                                    <field name="employee_id"/>
+                                    <field name="stage_id"/>
+                                    <field name="deadline_date"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Nhật ký nhắc việc">
+                            <field name="reminder_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="reminder_date"/>
+                                    <field name="employee_id"/>
+                                    <field name="note"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_btl_task_search" model="ir.ui.view">
+        <field name="name">btl.task.search</field>
+        <field name="model">btl.task</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="employee_id"/>
+                <field name="stage_id"/>
+
+                <filter string="Việc của tôi" name="filter_my_task" domain="[('employee_id.user_id', '=', uid)]"/>
+                <filter string="Quá hạn" name="filter_overdue" domain="[('is_overdue', '=', True)]"/>
+                <filter string="Hoàn thành" name="filter_done" domain="[('is_done', '=', True)]"/>
+                <filter string="Khách VIP" name="filter_vip" domain="[('customer_rank', '=', 'vang')]"/>
+
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Giai đoạn" name="group_stage" context="{'group_by': 'stage_id'}"/>
+                    <filter string="Nhân viên" name="group_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Khách hàng" name="group_customer" context="{'group_by': 'customer_id'}"/>
+                    <filter string="Loại công việc" name="group_type" context="{'group_by': 'task_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_btl_task_kanban" model="ir.ui.view">
+        <field name="name">btl.task.kanban</field>
+        <field name="model">btl.task</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="customer_id"/>
+                <field name="employee_id"/>
+                <field name="deadline_date"/>
+                <field name="priority"/>
+                <field name="is_overdue"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record">
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <div><field name="code"/></div>
+                                <div>Khách hàng: <field name="customer_id"/></div>
+                                <div>Nhân viên: <field name="employee_id"/></div>
+                                <div>Hạn xử lý: <field name="deadline_date"/></div>
+                                <div t-if="record.is_overdue.raw_value">
+                                    <strong>Trạng thái: Quá hạn</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_btl_task" model="ir.actions.act_window">
+        <field name="name">Danh sách công việc</field>
+        <field name="res_model">btl.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_btl_task_search"/>
+    </record>
+
+    <record id="action_btl_task_progress" model="ir.actions.act_window">
+        <field name="name">Tiến trình công việc</field>
+        <field name="res_model">btl.task</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_btl_task_search"/>
+        <field name="context">{'group_by': 'stage_id'}</field>
+    </record>
+
+    <record id="action_btl_task_mine" model="ir.actions.act_window">
+        <field name="name">Việc của tôi</field>
+        <field name="res_model">btl.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+        <field name="search_view_id" ref="view_btl_task_search"/>
+    </record>
+
+    <record id="action_btl_task_overdue" model="ir.actions.act_window">
+        <field name="name">Công việc quá hạn</field>
+        <field name="res_model">btl.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_overdue', '=', True)]</field>
+        <field name="search_view_id" ref="view_btl_task_search"/>
+    </record>
+</odoo>
