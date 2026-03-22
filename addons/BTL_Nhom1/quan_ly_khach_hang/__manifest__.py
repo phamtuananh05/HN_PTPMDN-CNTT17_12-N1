@@ -1,0 +1,22 @@
+{
+    'name': 'Quan ly khach hang',
+    'version': '15.0.1.0.0',
+    'summary': 'Quan ly khach hang noi bo cho bai tap lon',
+    'description': 'Quan ly khach hang, nguoi lien he va dashboard, lay hr.employee lam trung tam.',
+    'category': 'Services',
+    'author': 'BTL Nhom 1',
+    'license': 'LGPL-3',
+    'depends': ['quan_ly_nhan_su'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/customer_sequence.xml',
+        'data/customer_dashboard_data.xml',
+        'views/customer_views.xml',
+        'views/customer_contact_views.xml',
+        'views/customer_dashboard_views.xml',
+        'views/employee_inherit_views.xml',
+        'views/customer_menus.xml',
+    ],
+    'application': True,
+    'installable': True,
+}

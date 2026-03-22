@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_btl_customer_root" name="Quan ly khach hang" sequence="10"/>
+
+    <menuitem id="menu_btl_customer_dashboard" name="Dashboard" parent="menu_btl_customer_root" action="action_btl_customer_dashboard" sequence="1"/>
+    <menuitem id="menu_btl_customer_list" name="Danh sach khach hang" parent="menu_btl_customer_root" action="action_btl_customer" sequence="2"/>
+    <menuitem id="menu_btl_customer_gold" name="Khach VIP" parent="menu_btl_customer_root" action="action_btl_customer_gold" sequence="3"/>
+    <menuitem id="menu_btl_customer_mine" name="Khach hang cua toi" parent="menu_btl_customer_root" action="action_btl_customer_mine" sequence="4"/>
+    <menuitem id="menu_btl_customer_contact" name="Nguoi lien he" parent="menu_btl_customer_root" action="action_btl_customer_contact" sequence="5"/>
+</odoo>

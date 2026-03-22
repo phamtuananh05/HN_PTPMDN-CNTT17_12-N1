@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_btl_customer_user,access.btl.customer.user,model_btl_customer,base.group_user,1,1,1,1
+access_btl_customer_contact_user,access.btl.customer.contact.user,model_btl_customer_contact,base.group_user,1,1,1,1
+access_btl_customer_dashboard_user,access.btl.customer.dashboard.user,model_btl_customer_dashboard,base.group_user,1,1,1,0
