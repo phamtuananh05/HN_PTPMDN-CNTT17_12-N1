@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_task_reminder_tree" model="ir.ui.view">
+        <field name="name">btl.task.reminder.tree</field>
+        <field name="model">btl.task.reminder</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reminder_date"/>
+                <field name="name"/>
+                <field name="task_id"/>
+                <field name="employee_id"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_task_reminder_form" model="ir.ui.view">
+        <field name="name">btl.task.reminder.form</field>
+        <field name="model">btl.task.reminder</field>
+        <field name="arch" type="xml">
+            <form string="Nhac viec">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="task_id"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="reminder_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btl_task_reminder" model="ir.actions.act_window">
+        <field name="name">Nhat ky nhac viec</field>
+        <field name="res_model">btl.task.reminder</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
