@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_btl_task_telegram_overdue" model="ir.cron">
+        <field name="name">BTL - Gui Telegram cong viec qua han</field>
+        <field name="model_id" ref="quan_ly_cong_viec.model_btl_task"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_notify_overdue_tasks_telegram()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
