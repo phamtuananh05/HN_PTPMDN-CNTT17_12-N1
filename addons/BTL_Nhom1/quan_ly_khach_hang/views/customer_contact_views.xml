@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_customer_contact_tree" model="ir.ui.view">
+        <field name="name">btl.customer.contact.tree</field>
+        <field name="model">btl.customer.contact</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="name"/>
+                <field name="position"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="is_primary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_customer_contact_form" model="ir.ui.view">
+        <field name="name">btl.customer.contact.form</field>
+        <field name="model">btl.customer.contact</field>
+        <field name="arch" type="xml">
+            <form string="Nguoi lien he">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="name"/>
+                            <field name="position"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="birthday"/>
+                            <field name="is_primary"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_btl_customer_contact_search" model="ir.ui.view">
+        <field name="name">btl.customer.contact.search</field>
+        <field name="model">btl.customer.contact</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="customer_id"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <filter string="Lien he chinh" name="filter_primary" domain="[('is_primary', '=', True)]"/>
+                <group expand="0" string="Nhom">
+                    <filter string="Theo khach hang" name="group_customer" context="{'group_by': 'customer_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_btl_customer_contact" model="ir.actions.act_window">
+        <field name="name">Nguoi lien he</field>
+        <field name="res_model">btl.customer.contact</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_btl_customer_contact_search"/>
+    </record>
+</odoo>
