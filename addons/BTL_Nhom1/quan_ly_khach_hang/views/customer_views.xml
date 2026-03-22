@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_customer_tree" model="ir.ui.view">
+        <field name="name">btl.customer.tree</field>
+        <field name="model">btl.customer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="company_type"/>
+                <field name="phone"/>
+                <field name="rank"/>
+                <field name="state"/>
+                <field name="employee_id"/>
+                <field name="next_care_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_customer_form" model="ir.ui.view">
+        <field name="name">btl.customer.form</field>
+        <field name="model">btl.customer</field>
+        <field name="arch" type="xml">
+            <form string="Khach hang">
+                <header>
+                    <button name="action_open_contacts" type="object" class="oe_stat_button" icon="fa-users">
+                        <field name="contact_count" string="Nguoi lien he" widget="statinfo"/>
+                    </button>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code" readonly="1"/>
+                            <field name="name"/>
+                            <field name="company_type"/>
+                            <field name="rank"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="tax_code"/>
+                            <field name="employee_id"/>
+                            <field name="department_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Thong tin chung">
+                            <group>
+                                <field name="address"/>
+                                <field name="last_care_date"/>
+                                <field name="next_care_date"/>
+                                <field name="note"/>
+                            </group>
+                        </page>
+                        <page string="Nguoi lien he">
+                            <field name="contact_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="position"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                    <field name="is_primary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_btl_customer_search" model="ir.ui.view">
+        <field name="name">btl.customer.search</field>
+        <field name="model">btl.customer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="employee_id"/>
+                <filter string="Khach VIP" name="filter_gold" domain="[('rank', '=', 'vang')]"/>
+                <filter string="Can cham soc hom nay" name="filter_care_today" domain="[('next_care_date', '=', context_today())]"/>
+                <filter string="Khach cua toi" name="filter_my_customer" domain="[('employee_id.user_id', '=', uid)]"/>
+                <group expand="0" string="Nhom">
+                    <filter string="Theo hang" name="group_rank" context="{'group_by': 'rank'}"/>
+                    <filter string="Theo nhan vien" name="group_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Theo trang thai" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_btl_customer" model="ir.actions.act_window">
+        <field name="name">Danh sach khach hang</field>
+        <field name="res_model">btl.customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_btl_customer_search"/>
+    </record>
+
+    <record id="action_btl_customer_gold" model="ir.actions.act_window">
+        <field name="name">Khach VIP</field>
+        <field name="res_model">btl.customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('rank', '=', 'vang')]</field>
+        <field name="search_view_id" ref="view_btl_customer_search"/>
+    </record>
+
+    <record id="action_btl_customer_mine" model="ir.actions.act_window">
+        <field name="name">Khach hang cua toi</field>
+        <field name="res_model">btl.customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+        <field name="search_view_id" ref="view_btl_customer_search"/>
+    </record>
+</odoo>

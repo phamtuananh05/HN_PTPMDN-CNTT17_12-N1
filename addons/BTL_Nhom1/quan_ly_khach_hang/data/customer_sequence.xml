@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_btl_customer" model="ir.sequence">
+        <field name="name">Khach hang</field>
+        <field name="code">btl.customer</field>
+        <field name="prefix">KH%(y)s</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>
