@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_hr_family_tree" model="ir.ui.view">
+        <field name="name">btl.hr.family.tree</field>
+        <field name="model">btl.hr.family</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="name"/>
+                <field name="relationship"/>
+                <field name="birth_date"/>
+                <field name="age"/>
+                <field name="is_dependent"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_hr_family_form" model="ir.ui.view">
+        <field name="name">btl.hr.family.form</field>
+        <field name="model">btl.hr.family</field>
+        <field name="arch" type="xml">
+            <form string="Than nhan">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="name"/>
+                            <field name="relationship"/>
+                        </group>
+                        <group>
+                            <field name="birth_date"/>
+                            <field name="age" readonly="1"/>
+                            <field name="is_dependent" readonly="1"/>
+                            <field name="phone"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btl_hr_family" model="ir.actions.act_window">
+        <field name="name">Than nhan</field>
+        <field name="res_model">btl.hr.family</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
