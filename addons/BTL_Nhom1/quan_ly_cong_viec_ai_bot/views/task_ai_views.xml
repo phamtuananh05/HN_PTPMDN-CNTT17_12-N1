@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_task_form_inherit_ai_bot" model="ir.ui.view">
+        <field name="name">btl.task.form.inherit.telegram.bot</field>
+        <field name="model">btl.task</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_btl_task_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_send_test_telegram"
+                        type="object"
+                        string="Gửi thông báo Telegram"
+                        class="btn-secondary"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Thông báo Telegram">
+                    <group>
+                        <group string="Trạng thái gửi thông báo">
+                            <field name="telegram_notified" readonly="1"/>
+                            <field name="telegram_type" readonly="1"/>
+                            <field name="telegram_sent_at" readonly="1"/>
+                            <field name="overdue_telegram_sent" readonly="1"/>
+                            <field name="followup_telegram_sent" readonly="1"/>
+                        </group>
+                        <group string="Nội dung đã gửi">
+                            <field name="telegram_message" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
