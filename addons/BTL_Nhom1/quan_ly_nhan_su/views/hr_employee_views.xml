@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btl_hr_employee_tree" model="ir.ui.view">
+        <field name="name">hr.employee.btl.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="work_phone"/>
+                <field name="work_email"/>
+                <field name="que_quan"/>
+                <field name="so_cccd"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_btl_hr_employee_search" model="ir.ui.view">
+        <field name="name">hr.employee.btl.search</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="so_cccd"/>
+                <filter string="Ho so cua toi" name="filter_my_profile" domain="[('user_id', '=', uid)]"/>
+                <group expand="0" string="Nhom">
+                    <filter string="Theo phong ban" name="group_department" context="{'group_by': 'department_id'}"/>
+                    <filter string="Theo chuc vu" name="group_job" context="{'group_by': 'job_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_form_inherit_btl" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.btl</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_family" type="object" class="oe_stat_button" icon="fa-users">
+                    <field name="family_count" string="Than nhan" widget="statinfo"/>
+                </button>
+                <button name="action_open_work_history" type="object" class="oe_stat_button" icon="fa-briefcase">
+                    <field name="work_history_count" string="QT cong tac" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Thong tin mo rong">
+                    <group>
+                        <group>
+                            <field name="que_quan"/>
+                            <field name="so_cccd"/>
+                            <field name="ngay_cap_cccd"/>
+                            <field name="noi_cap_cccd"/>
+                        </group>
+                        <group>
+                            <field name="sdt_khan_cap"/>
+                            <field name="birthday"/>
+                            <field name="work_phone"/>
+                            <field name="work_email"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="ghi_chu_noi_bo"/>
+                    </group>
+                </page>
+
+                <page string="Than nhan">
+                    <field name="family_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="relationship"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="is_dependent"/>
+                            <field name="phone"/>
+                        </tree>
+                    </field>
+                </page>
+
+                <page string="Qua trinh cong tac">
+                    <field name="work_history_ids">
+                        <tree editable="bottom">
+                            <field name="company_name"/>
+                            <field name="position"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_btl_hr_employee" model="ir.actions.act_window">
+        <field name="name">Danh sach nhan vien</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_btl_hr_employee_tree"/>
+        <field name="search_view_id" ref="view_btl_hr_employee_search"/>
+    </record>
+
+    <record id="action_btl_hr_employee_mine" model="ir.actions.act_window">
+        <field name="name">Ho so cua toi</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_btl_hr_employee_tree"/>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="search_view_id" ref="view_btl_hr_employee_search"/>
+    </record>
+
+    <record id="action_btl_hr_department" model="ir.actions.act_window">
+        <field name="name">Phong ban</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
